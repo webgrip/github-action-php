@@ -1,4 +1,4 @@
-name: php-8.2-alpine
+name: php-8.2-bookworm
 
 on: workflow_dispatch
 
@@ -26,8 +26,8 @@ jobs:
         uses: docker/build-push-action@v5
 
         with:
-          context: images/php/8.2/alpine
+          context: images/php/8.2/bookworm
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            webgrip/github-action-php:8.2-alpine
+            webgrip/github-action-php:8.2-bookworm
