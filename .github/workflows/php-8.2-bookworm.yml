@@ -24,7 +24,10 @@ jobs:
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v5
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5247e71 (Moved stuff and added alpine for magento)
         with:
           context: images/php/8.2/bookworm
           platforms: linux/amd64,linux/arm64
