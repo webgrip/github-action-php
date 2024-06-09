@@ -1,6 +1,10 @@
 name: php-8.2-bookworm
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build-and-push:
@@ -30,3 +34,6 @@ jobs:
           push: true
           tags: |
             webgrip/github-action-php:8.2-bookworm
+
+  test-docker-image:
+    uses: ./.github/workflows/test.yml

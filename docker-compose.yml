@@ -1,0 +1,7 @@
+services:
+  github-action-php:
+    #image: webgrip/github-action-php:8.2-bookworm
+    build:
+      context: images/php/8.2/bookworm
+      dockerfile: Dockerfile
+    container_name: github-runner
