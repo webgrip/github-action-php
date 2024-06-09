@@ -1,4 +1,4 @@
-name: php-8.2-bookworm
+name: 8.2-bookworm
 
 on:
   workflow_dispatch:
@@ -25,6 +25,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Set docker image label
+        id: set_label
+        run: |
+          docker_image_path="webgrip/github-action-php"
+          docker_image_tag="${{ github.workflow }}"
+          echo "image_url=${docker_image_path}:${docker_image_tag}" >> $GITHUB_OUTPUT
+
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v5
@@ -33,7 +40,11 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            webgrip/github-action-php:8.2-bookworm
+            ${{ steps.set_label.outputs.image_url }}
+    outputs:
+      image-url: ${{ steps.set_label.outputs.image_url }}
 
   test-docker-image:
     uses: ./.github/workflows/test.yml
+    with:
+      docker-image: ${{ needs.build-and-push.outputs.image-url }}
