@@ -24,6 +24,9 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
+RUN echo "which php" && which php && php -v && echo "which composer" && which composer && composer -V && echo "which node" && which node && node -v && echo "which npm" && which npm && npm -v
+
+
 # Set working directory
 WORKDIR /workspace
 
