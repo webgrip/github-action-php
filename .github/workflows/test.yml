@@ -1,5 +1,3 @@
-#TEst to run the dockerfile we just made, so that we know it's uppable
-
 name: test
 
 on:
